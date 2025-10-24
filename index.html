@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strength Cartel Gym</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --grey: #1c1c1c;
+      --pink: #ff007f;
+      --white: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(180deg, var(--black), var(--grey));
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.6));
+    }
+
+    h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--pink);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 40px;
+      line-height: 1.6em;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    a.button {
+      text-decoration: none;
+      background: var(--pink);
+      color: var(--white);
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    a.button:hover {
+      background: transparent;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      color: #888;
+      z-index: 2;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+      }
+      a.button {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="content">
+    <img src="https://via.placeholder.com/150x150?text=LOGO" alt="Strength Cartel Logo" class="logo">
+    <h1>Strength Cartel</h1>
+    <p>Unleash your power. Join a community that pushes limits, builds strength, and transforms lives — one rep at a time.</p>
+    <div class="buttons">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="button">Become a Member</a>
+      <a href="viber://chat?number=9607999564" class="button">Contact via Viber</a>
+    </div>
+  </div>
+  <footer>© 2025 Strength Cartel. All rights reserved.</footer>
+</body>
+</html>
