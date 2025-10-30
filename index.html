@@ -88,10 +88,11 @@
     }
 
     #countdown {
-      font-size: 1.1em;
-      color: #ffccff;
+      font-size: 1.3em;
+      color: var(--pink);
       margin-bottom: 40px;
       letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
     }
 
     .buttons {
@@ -190,10 +191,12 @@
   </footer>
 
   <script>
-    // Countdown Timer to 31 Dec 2025 23:59
+    // Countdown Timer fixed to Maldives time (UTC+5)
     const countdown = document.getElementById('countdown');
-    const targetDate = new Date("Dec 31, 2025 23:59:00").getTime();
-
+    
+    // Target: 31 Dec 2025 23:59:00 Maldives time
+    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // month 11 = December, UTC+5 offset
+    
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
