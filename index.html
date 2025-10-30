@@ -70,8 +70,28 @@
     p {
       font-size: 1.1em;
       color: #ccc;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       line-height: 1.6em;
+    }
+
+    .price {
+      font-size: 1.4em;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .offer {
+      font-size: 1em;
+      color: #ff66a3;
+      margin-bottom: 30px;
+    }
+
+    #countdown {
+      font-size: 1.1em;
+      color: #ffccff;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
     }
 
     .buttons {
@@ -106,6 +126,25 @@
       font-size: 0.9em;
       color: #888;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: var(--white);
+      font-size: 1.4em;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--pink);
     }
 
     @media (max-width: 600px) {
@@ -121,6 +160,7 @@
       }
     }
   </style>
+  <script src="https://kit.fontawesome.com/a2e0e6ad4b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="overlay"></div>
@@ -128,14 +168,49 @@
     <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel Logo" class="logo">
     <h1>Strength Cartel</h1>
     <p>Unleash your power. Join a community that pushes limits, builds strength, and transforms lives — one rep at a time.</p>
+
+    <div class="price">Gym Fee: MVR 555 / $35</div>
+    <div class="offer">🎉 No registration fee till end of 2025 🎉</div>
+
+    <div id="countdown">Countdown loading...</div>
+
     <div class="buttons">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="button">Become a Member</a>
       <a href="viber://chat?number=%2B9609736177" class="button">Contact via Viber</a>
     </div>
   </div>
-  <footer>© 2025 Strength Cartel. All rights reserved.</footer>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    © 2025 Strength Cartel. All rights reserved.
+  </footer>
+
+  <script>
+    // Countdown Timer to 31 Dec 2025 23:59
+    const countdown = document.getElementById('countdown');
+    const targetDate = new Date("Dec 31, 2025 23:59:00").getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "Offer expired!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `Offer ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
-
-
-
