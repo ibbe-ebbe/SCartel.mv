@@ -6,6 +6,13 @@
   <title>Strength Cartel Gym</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
+    /* Custom font from GitHub via jsDelivr CDN */
+    @font-face {
+      font-family: 'NCLMaxipower';
+      src: url('https://cdn.jsdelivr.net/gh/ibbe-ebbe/SCartel.mv/NCLMaxipower-Demo.otf') format('opentype');
+      font-display: swap;
+    }
+
     :root {
       --black: #0d0d0d;
       --grey: #1c1c1c;
@@ -33,6 +40,7 @@
         url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
+      overflow: hidden;
     }
 
     .overlay {
@@ -59,8 +67,8 @@
     }
 
     h1 {
-      font-size: 2.8em;
-      font-weight: 800;
+      font-family: 'NCLMaxipower', 'Inter', sans-serif;
+      font-size: 3.2em;
       letter-spacing: 2px;
       color: var(--pink);
       margin-bottom: 10px;
