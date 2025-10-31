@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strength Cartel Gym</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Custom font from GitHub via jsDelivr CDN */
     @font-face {
       font-family: 'NCLMaxipower';
       src: url('https://cdn.jsdelivr.net/gh/ibbe-ebbe/SCartel.mv/NCLMaxipower-Demo.otf') format('opentype');
@@ -41,11 +43,12 @@
       background-size: cover;
       background-position: center;
       overflow: hidden;
+      position: relative;
     }
 
     .overlay {
       background: rgba(0, 0, 0, 0.6);
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -130,11 +133,11 @@
     }
 
     footer {
-      position: absolute;
+      position: fixed;
       bottom: 20px;
       font-size: 0.9em;
       color: #888;
-      z-index: 2;
+      z-index: 999; /* above overlay */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -142,19 +145,21 @@
     }
 
     .social-icons {
-      display: flex;
-      gap: 15px;
-    }
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 
-    .social-icons a {
-      color: var(--white);
-      font-size: 1.4em;
-      transition: color 0.3s ease;
-    }
+  .social-icons a {
+    color: #fff; /* white by default */
+    font-size: 36px; /* bigger size */
+    transition: color 0.3s ease;
+  }
 
-    .social-icons a:hover {
-      color: var(--pink);
-    }
+  .social-icons a:hover {
+    color: #ff007f; /* pink on hover */
+  }
 
     @media (max-width: 600px) {
       h1 {
@@ -169,10 +174,10 @@
       }
     }
   </style>
-  <script src="https://kit.fontawesome.com/a2e0e6ad4b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="overlay"></div>
+
   <div class="content">
     <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel Logo" class="logo">
     <h1>Strength Cartel</h1>
@@ -189,21 +194,32 @@
     </div>
   </div>
 
-  <footer>
-    <div class="social-icons">
-      <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    </div>
-    © 2025 Strength Cartel. All rights reserved.
-  </footer>
+<!-- Your page content above -->
+<div class="content">
+  <!-- logo, headings, buttons, countdown, etc. -->
+</div>
+
+<!-- Footer goes here -->
+<footer>
+  <div class="social-icons">
+    <a href="https://instagram.com/strengthcartelnet" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com/@strengthcartelnet"_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
+  </div>
+  © 2025 Strength Cartel. All rights reserved.
+</footer>
+
+<!-- Include Font Awesome CDN just before closing body -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</body>
+</html>
+
 
   <script>
     // Countdown Timer fixed to Maldives time (UTC+5)
     const countdown = document.getElementById('countdown');
     
-    // Target: 31 Dec 2025 23:59:00 Maldives time
-    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // month 11 = December, UTC+5 offset
+    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0));
     
     const timer = setInterval(() => {
       const now = new Date().getTime();
