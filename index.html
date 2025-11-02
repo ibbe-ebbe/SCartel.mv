@@ -35,15 +35,14 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       text-align: center;
       background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
         url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
-      overflow: hidden;
       position: relative;
+      overflow-x: hidden; /* allow vertical scroll */
     }
 
     .overlay {
@@ -54,13 +53,15 @@
       right: 0;
       bottom: 0;
       z-index: 1;
+      pointer-events: none; /* allow scroll and click-through */
     }
 
     .content {
       position: relative;
       z-index: 2;
       max-width: 600px;
-      padding: 20px;
+      padding: 40px 20px 100px; /* extra bottom padding for footer space */
+      margin-top: 80px;
     }
 
     .logo {
@@ -133,33 +134,33 @@
     }
 
     footer {
-      position: fixed;
-      bottom: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 30px 0;
       font-size: 0.9em;
       color: #888;
-      z-index: 999; /* above overlay */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.3);
     }
 
     .social-icons {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
 
-  .social-icons a {
-    color: #fff; /* white by default */
-    font-size: 36px; /* bigger size */
-    transition: color 0.3s ease;
-  }
+    .social-icons a {
+      color: #fff;
+      font-size: 36px;
+      transition: color 0.3s ease;
+    }
 
-  .social-icons a:hover {
-    color: #ff007f; /* pink on hover */
-  }
+    .social-icons a:hover {
+      color: var(--pink);
+    }
 
     @media (max-width: 600px) {
       h1 {
@@ -194,33 +195,23 @@
     </div>
   </div>
 
-<!-- Your page content above -->
-<div class="content">
-  <!-- logo, headings, buttons, countdown, etc. -->
-</div>
+  <footer>
+    <div class="social-icons">
+      <a href="https://instagram.com/strengthcartelnet" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@strengthcartelnet" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
+    </div>
+    © 2025 Strength Cartel. All rights reserved.
+  </footer>
 
-<!-- Footer goes here -->
-<footer>
-  <div class="social-icons">
-    <a href="https://instagram.com/strengthcartelnet" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://tiktok.com/@strengthcartelnet"_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
-  </div>
-  © 2025 Strength Cartel. All rights reserved.
-</footer>
-
-<!-- Include Font Awesome CDN just before closing body -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-</body>
-</html>
-
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <script>
     // Countdown Timer fixed to Maldives time (UTC+5)
     const countdown = document.getElementById('countdown');
-    
     const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0));
-    
+
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
