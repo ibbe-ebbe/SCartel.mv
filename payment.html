@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strength Cartel — Payment Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --grey: #1c1c1c;
+      --pink: #ff007f;
+      --white: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(180deg, var(--black), var(--grey));
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 40px 20px 100px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.6));
+    }
+
+    h1 {
+      color: var(--pink);
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 30px;
+      line-height: 1.6em;
+    }
+
+    .account-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .account-box strong {
+      display: block;
+      font-size: 1.3em;
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 1.1em;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+
+    .copy-btn {
+      background: var(--pink);
+      border: none;
+      color: var(--white);
+      padding: 6px 14px;
+      border-radius: 30px;
+      margin-left: 10px;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: transparent;
+      color: var(--pink);
+      border: 1px solid var(--pink);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+
+    a.button {
+      text-decoration: none;
+      background: var(--pink);
+      color: var(--white);
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    a.button:hover {
+      background: transparent;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    /* Toast message */
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      background: var(--pink);
+      color: var(--white);
+      text-align: center;
+      border-radius: 25px;
+      padding: 10px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      transition: visibility 0s, opacity 0.5s linear;
+      opacity: 0;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      a.button { width: 80%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel Logo" class="logo">
+    <h1>Payment Info</h1>
+    <p>Use any of the following accounts to make your gym membership payment. Tap the button to copy the account number.</p>
+
+    <div class="account-box">
+      <strong>BML Account</strong>
+      <code id="bml-account">7770000217318</code>
+      <button class="copy-btn" onclick="copyAccount('bml-account')">Copy</button>
+      <p>MOHD.A.WAHHAB</p>
+    </div>
+
+    <div class="account-box">
+      <strong>MIB Account</strong>
+      <code id="mib-account">90501400040401000</code>
+      <button class="copy-btn" onclick="copyAccount('mib-account')">Copy</button>
+      <p>STRENGTH CARTEL</p>
+    </div>
+
+    <div class="buttons">
+      <a href="viber://chat?number=%2B9609343384" class="button">Contact via Viber</a>
+      <a href="index.html" class="button">Back to Home</a>
+    </div>
+
+    <footer>© 2025 Strength Cartel. All rights reserved.</footer>
+  </div>
+
+  <div id="toast">Copied to clipboard!</div>
+
+  <script>
+    function copyAccount(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      });
+    }
+  </script>
+</body>
+</html>
