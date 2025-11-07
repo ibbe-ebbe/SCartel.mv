@@ -42,7 +42,8 @@
       background-size: cover;
       background-position: center;
       position: relative;
-      overflow-x: hidden; /* allow vertical scroll */
+      overflow-x: hidden;
+      padding-bottom: 60px;
     }
 
     .overlay {
@@ -53,14 +54,15 @@
       right: 0;
       bottom: 0;
       z-index: 1;
-      pointer-events: none; /* allow scroll and click-through */
+      pointer-events: none;
     }
 
     .content {
       position: relative;
       z-index: 2;
       max-width: 600px;
-      padding: 40px 20px 100px; /* extra bottom padding for footer space */
+      width: 100%;
+      padding: 40px 20px 20px;
       margin-top: 80px;
     }
 
@@ -112,6 +114,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
+      margin-bottom: 40px;
     }
 
     a.button {
@@ -133,9 +136,16 @@
       box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
     }
 
+    iframe {
+      border: 0;
+      border-radius: 10px;
+      width: 100%;
+      height: 300px;
+      margin-top: 40px;
+    }
+
     footer {
       position: relative;
-      bottom: 0;
       width: 100%;
       text-align: center;
       padding: 30px 0;
@@ -162,6 +172,12 @@
       color: var(--pink);
     }
 
+    footer a {
+      color: #ff66a3;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2em;
@@ -182,7 +198,7 @@
   <div class="content">
     <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel Logo" class="logo">
     <h1>Strength Cartel</h1>
-    <p>Unleash your power. Join a community that pushes limits, builds strength, and transforms lives — one rep at a time.</p>
+    <p>Unleash your power. Join a community that pushes limits, builds strength, and transforms lives — Stronger as ONE.</p>
 
     <div class="price">Gym Fee: MVR 555</div>
     <div class="offer">🎉 No registration fee till end of 2025 🎉</div>
@@ -190,9 +206,19 @@
     <div id="countdown">Countdown loading...</div>
 
     <div class="buttons">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="button">Become a Member</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="button" target="_blank">Become a Member</a>
       <a href="viber://chat?number=%2B9609343384" class="button">Contact via Viber</a>
+      <a href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy" class="button" target="_blank">📍 View Location</a>
     </div>
+
+    <!-- Embedded Google Map -->
+    <iframe 
+      src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Zikuraa+HDh,+Kulhudhuffushi&output=embed"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
   </div>
 
   <footer>
@@ -202,21 +228,21 @@
       <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
     </div>
 
- <div>
-      <a href="payment.html" style="color:#ff66a3; text-decoration:none; margin:0 10px;">Payment Information</a> |
-      <a href="rules.html" style="color:#ff66a3; text-decoration:none; margin:0 10px;">Rules & Guidelines</a>
+    <div>
+      <a href="payment.html">Payment Information</a> |
+      <a href="rules.html">Rules & Guidelines</a>
     </div>
 
     © 2025 Strength Cartel. All rights reserved.
   </footer>
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <script>
-    // Countdown Timer fixed to Maldives time (UTC+5)
+    // Countdown Timer (Maldives UTC+5)
     const countdown = document.getElementById('countdown');
-    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0));
+    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // 2025-12-31 23:59 Maldives time
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
