@@ -1,266 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strength Cartel Gym</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page</title>
   <style>
-    @font-face {
-      font-family: 'NCLMaxipower';
-      src: url('https://cdn.jsdelivr.net/gh/ibbe-ebbe/SCartel.mv/NCLMaxipower-Demo.otf') format('opentype');
-      font-display: swap;
-    }
-
-    :root {
-      --black: #0d0d0d;
-      --grey: #1c1c1c;
-      --pink: #ff007f;
-      --white: #f5f5f5;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(180deg, var(--black), var(--grey));
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      text-align: center;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow-x: hidden;
-      padding-bottom: 60px;
+      height: 100vh;
+      margin: 0;
     }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      width: 100%;
-      padding: 40px 20px 20px;
-      margin-top: 80px;
-    }
-
-    .logo {
-      width: 130px;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.6));
-    }
-
     h1 {
-      font-family: 'NCLMaxipower', 'Inter', sans-serif;
-      font-size: 3.2em;
-      letter-spacing: 2px;
-      color: var(--pink);
-      margin-bottom: 10px;
-      text-transform: uppercase;
+      color: #00ff88;
     }
-
     p {
-      font-size: 1.1em;
-      color: #ccc;
-      margin-bottom: 20px;
-      line-height: 1.6em;
+      color: #bbb;
     }
-
-    .price {
-      font-size: 1.4em;
-      color: var(--white);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .offer {
-      font-size: 1em;
-      color: #ff66a3;
-      margin-bottom: 30px;
-    }
-
-    #countdown {
-      font-size: 1.3em;
-      color: var(--pink);
-      margin-bottom: 40px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-
-    a.button {
+    a {
+      color: #00bfff;
       text-decoration: none;
-      background: var(--pink);
-      color: var(--white);
-      padding: 14px 34px;
-      border-radius: 50px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
+      margin-top: 10px;
     }
-
-    a.button:hover {
-      background: transparent;
-      border: 2px solid var(--pink);
-      color: var(--pink);
-      box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
-    }
-
-    iframe {
-      border: 0;
-      border-radius: 10px;
-      width: 100%;
-      height: 300px;
-      margin-top: 40px;
-    }
-
-    footer {
-      position: relative;
-      width: 100%;
-      text-align: center;
-      padding: 30px 0;
-      font-size: 0.9em;
-      color: #888;
-      z-index: 2;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 25px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .social-icons a {
-      color: #fff;
-      font-size: 36px;
-      transition: color 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: var(--pink);
-    }
-
-    footer a {
-      color: #ff66a3;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-      p {
-        font-size: 1em;
-      }
-      a.button {
-        width: 80%;
-        text-align: center;
-      }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-
-  <div class="content">
-    <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel Logo" class="logo">
-    <h1>Strength Cartel</h1>
-    <p>Unleash your power. Join a community that pushes limits, builds strength, and transforms lives — one rep at a time.</p>
-
-    <div class="price">Gym Fee: MVR 555</div>
-    <div class="offer">🎉 No registration fee till end of 2025 🎉</div>
-
-    <div id="countdown">Countdown loading...</div>
-
-    <div class="buttons">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="button" target="_blank">Become a Member</a>
-      <a href="viber://chat?number=%2B9609343384" class="button">Contact via Viber</a>
-      <a href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy" class="button" target="_blank">📍 View Location</a>
-    </div>
-
-    <!-- Embedded Google Map -->
-    <iframe 
-      src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Zikuraa+HDh,+Kulhudhuffushi&output=embed"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-
-  </div>
-
-  <footer>
-    <div class="social-icons">
-      <a href="https://instagram.com/strengthcartelnet" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://tiktok.com/@strengthcartelnet" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
-    </div>
-
-    <div>
-      <a href="payment.html">Payment Information</a> |
-      <a href="rules.html">Rules & Guidelines</a>
-    </div>
-
-    © 2025 Strength Cartel. All rights reserved.
-  </footer>
-
-  <!-- Font Awesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-  <script>
-    // Countdown Timer (Maldives UTC+5)
-    const countdown = document.getElementById('countdown');
-    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // 2025-12-31 23:59 Maldives time
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(timer);
-        countdown.innerHTML = "Offer expired!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `Offer ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-  </script>
+  <h1>✅ HTML Test Page</h1>
+  <p>Your website is working correctly!</p>
+  <a href="/">Go to Homepage</a>
 </body>
 </html>
