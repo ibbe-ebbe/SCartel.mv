@@ -109,8 +109,6 @@
     .cta-ghost:hover { border-color: var(--pink); color: var(--pink-soft); }
     .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .hero-note { margin-top: 16px; color: var(--muted); font-size: .9rem; }
-    .fee-join { display: inline-block; margin-top: 14px; font-weight: 700; font-size: .9rem; color: var(--pink-soft); }
-    .fee-join:hover { text-decoration: underline; }
 
 
     /* Leaderboard */
@@ -145,6 +143,7 @@
     @media (max-width: 720px) {
       .hero { padding: 56px 0 64px; }
       .fee-grid { grid-template-columns: 1fr; }
+      .join-btn { display: none; }
       .hero-actions .cta { flex: 1 1 100%; }
       body { padding-bottom: 76px; }
       .mobile-bar { display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(12,12,14,.95); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
@@ -182,22 +181,22 @@
     <div class="wrap">
 
       <section class="fees" id="fees">
-        <h2>Simple, clear fees</h2>
+        <h2>Fees</h2>
         <div class="fee-grid">
-          <div class="fee main"><span>Membership fee</span><b>MVR 555</b><small>+ MVR 45 one-time registration fee</small><a class="fee-join" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Join now</a></div>
-          <div class="fee"><span>School students</span><b>MVR 500</b><small>+ MVR 45 one-time registration fee</small><a class="fee-join" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Join now</a></div>
+          <div class="fee main"><span>Membership fee</span><b>MVR 555</b><small>+ MVR 45 one-time registration fee</small></div>
+          <div class="fee"><span>School students</span><b>MVR 500</b><small>+ MVR 45 one-time registration fee</small></div>
         </div>
       </section>
 
       <section class="events" id="events" hidden>
-        <h2>Promos &amp; events</h2>
+        <h2>Events</h2>
         <div class="event-grid" id="event-grid"></div>
         <div class="event-dots" id="event-dots"></div>
       </section>
 
       <section class="board" id="leaderboard">
         <div>
-          <h2>Gym leaderboard</h2>
+          <h2>Leaderboard</h2>
           <p>See the current rankings.</p>
         </div>
         <a class="cta cta-solid" href="https://leaderboard.strengthcartel.net" target="_blank" rel="noopener"><i class="fas fa-trophy"></i> View leaderboard</a>
