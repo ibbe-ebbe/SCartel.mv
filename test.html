@@ -74,19 +74,57 @@
     #offer { margin-top: 20px; color: var(--pink-soft); font-weight: 600; }
     #countdown { display: block; color: #fff; font-variant-numeric: tabular-nums; }
 
-    /* Action tiles */
-    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: -30px; position: relative; z-index: 2; }
-    .tile {
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 16px 18px; display: flex; flex-direction: column; gap: 2px;
-      transition: border-color .2s ease;
-    }
-    .tile:hover { border-color: var(--pink); }
-    .tile i { font-size: 1.2rem; color: var(--pink); margin-bottom: 4px; }
-    .tile strong { font-size: .98rem; }
-    .tile span { color: var(--muted); font-size: .85rem; }
-    .tile.main { background: var(--pink); border-color: var(--pink); }
-    .tile.main i, .tile.main span { color: #fff; }
+    /* Promos & events */
+    .events { margin-top: 64px; }
+    .events h2 { font-size: 1.5rem; margin-bottom: 16px; }
+    .event-grid { display: flex; gap: 12px; overflow-x: auto; position: relative; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+    .event-grid::-webkit-scrollbar { display: none; }
+    .event-grid .event { flex: 0 0 min(300px, 86%); scroll-snap-align: start; }
+    .event-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+    .event-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 6px; background: #3a3a44; cursor: pointer; transition: width .25s ease, background .25s ease; }
+    .event-dots button.on { width: 22px; background: var(--pink); }
+    .event { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+    .event.live { border-color: var(--pink); }
+    .badge { align-self: flex-start; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(255,0,127,.15); color: var(--pink-soft); }
+    .event h3 { font-size: 1.1rem; }
+    .event .when { color: var(--muted); font-size: .9rem; }
+    .event .status { font-size: .9rem; font-weight: 600; color: var(--pink-soft); }
+    .event a { align-self: flex-start; margin-top: 6px; background: var(--pink); padding: 7px 14px; border-radius: 8px; font-weight: 700; font-size: .85rem; }
+
+    /* Fees */
+    .fees { margin-top: 56px; }
+    .fees h2 { font-size: 1.5rem; margin-bottom: 16px; }
+    .fee-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .fee { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+    .fee span { color: var(--muted); font-size: .9rem; }
+    .fee b { display: block; font-size: 1.9rem; font-weight: 800; line-height: 1.2; margin-top: 4px; }
+    .fee small { display: block; margin-top: 8px; font-size: .8rem; color: var(--muted); }
+    .fee.main { border-color: var(--pink); }
+    .fee.main b { color: var(--pink); }
+
+
+    /* Calls to action */
+    .cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 700; font-size: .95rem; border: 1.5px solid var(--pink); transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .cta-solid { background: var(--pink); color: #fff; }
+    .cta-solid:hover { background: #d6006a; border-color: #d6006a; }
+    .cta-ghost { background: transparent; color: #fff; border-color: #3a3a44; }
+    .cta-ghost:hover { border-color: var(--pink); color: var(--pink-soft); }
+    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .hero-note { margin-top: 16px; color: var(--muted); font-size: .9rem; }
+    .fee-join { display: inline-block; margin-top: 14px; font-weight: 700; font-size: .9rem; color: var(--pink-soft); }
+    .fee-join:hover { text-decoration: underline; }
+
+    /* How to join */
+    .steps { margin-top: 64px; }
+    .steps h2 { font-size: 1.5rem; margin-bottom: 16px; }
+    .step-list { list-style: none; counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .step-list li { counter-increment: step; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .step-list li::before { content: counter(step); width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--pink); font-weight: 800; font-size: .9rem; }
+    .step-list b { font-size: 1.05rem; margin-top: 4px; }
+    .step-list span { color: var(--muted); font-size: .92rem; }
+    .step-list a { color: var(--pink-soft); text-decoration: underline; }
+
+    .mobile-bar { display: none; }
 
     /* Map */
     .find { margin-top: 72px; position: relative; }
@@ -114,10 +152,14 @@
 
     @media (max-width: 720px) {
       .hero { padding: 56px 0 64px; }
-      .tiles { grid-template-columns: 1fr; margin-top: -28px; }
-      .tile { flex-direction: row; align-items: center; gap: 14px; padding: 12px 16px; }
-      .tile i { margin: 0; }
-      .tile div { display: flex; flex-direction: column; }
+      .fee-grid { grid-template-columns: 1fr; }
+      .step-list { grid-template-columns: 1fr; }
+      .hero-actions .cta { flex: 1 1 100%; }
+      body { padding-bottom: 76px; }
+      .mobile-bar { display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(12,12,14,.95); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
+      .mobile-bar .cta-solid { flex: 1; }
+      .mobile-bar .cta-ghost { width: 48px; padding: 12px 0; }
+
       .find iframe { height: 360px; }
       .find-card { position: static; max-width: none; border-radius: 0; border-left: 0; border-right: 0; }
     }
@@ -137,27 +179,40 @@
     <div class="wrap">
       <h1>Stronger as one</h1>
       <p class="lead">Unleash your power. Join a community that pushes limits, builds strength, and transforms lives.</p>
-      <div class="price-pill"><b>MVR 555</b><span>gym fee</span></div>
+      <div class="hero-actions">
+        <a class="cta cta-solid" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener"><i class="fas fa-dumbbell"></i> Become a member</a>
+        <a class="cta cta-ghost" href="viber://chat?number=9609343384"><i class="fab fa-viber"></i> Message on Viber</a>
+      </div>
+      <p class="hero-note">Plans from MVR 500. Registration is a one-time fee.</p>
       <div id="offer" hidden>🎉 No registration fee <span id="countdown"></span></div>
     </div>
   </header>
 
   <main>
     <div class="wrap">
-      <div class="tiles">
-        <a class="tile main" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">
-          <i class="fas fa-dumbbell"></i>
-          <div><strong>Become a member</strong><br><span>Fill in the form</span></div>
-        </a>
-        <a class="tile" href="viber://chat?number=9609343384">
-          <i class="fab fa-viber"></i>
-          <div><strong>Message on Viber</strong><br><span>Ask us anything</span></div>
-        </a>
-        <a class="tile" href="tel:+9609343384">
-          <i class="fas fa-phone"></i>
-          <div><strong>Call us</strong><br><span>+960 934 3384</span></div>
-        </a>
-      </div>
+
+      <section class="fees" id="fees">
+        <h2>Simple, clear fees</h2>
+        <div class="fee-grid">
+          <div class="fee main"><span>Membership fee</span><b>MVR 555</b><small>+ MVR 45 one-time registration fee</small><a class="fee-join" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Join now</a></div>
+          <div class="fee"><span>School students</span><b>MVR 500</b><small>+ MVR 45 one-time registration fee</small><a class="fee-join" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Join now</a></div>
+        </div>
+      </section>
+
+      <section class="events" id="events" hidden>
+        <h2>Promos &amp; events</h2>
+        <div class="event-grid" id="event-grid"></div>
+        <div class="event-dots" id="event-dots"></div>
+      </section>
+
+      <section class="steps" id="how-to-join">
+        <h2>How to join</h2>
+        <ol class="step-list">
+          <li><b>Fill in the form</b><span>Tap Become a member and send us your details.</span></li>
+          <li><b>Pay your fee</b><span>See <a href="payment.html">payment information</a> for how to pay.</span></li>
+          <li><b>Start training</b><span>Questions first? Message us on Viber.</span></li>
+        </ol>
+      </section>
     </div>
 
     <section class="find" id="find-us">
@@ -172,10 +227,17 @@
     </section>
   </main>
 
+  <div class="mobile-bar">
+    <a class="cta cta-solid" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Become a member</a>
+    <a class="cta cta-ghost" href="viber://chat?number=9609343384" aria-label="Message on Viber"><i class="fab fa-viber"></i></a>
+    <a class="cta cta-ghost" href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
+  </div>
+
   <footer>
     <div class="social">
       <a href="https://instagram.com/strengthcartelnet" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://tiktok.com/@strengthcartelnet" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
     </div>
     <div class="links">
       <a href="payment.html">Payment information</a>
@@ -186,6 +248,140 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---- Promos & events from Google Sheet (Maldives time, UTC+5) ----
+    // Sheet must be shared as "Anyone with the link can view".
+    // Columns: Start Date, Start Time, End Date, End Time, Title, Link, Type, Visible (Yes/No)  (dates as DD-MM-YYYY, times as HH:MM)
+    const SHEET_ID = '16PDN7zge4Z4ZpaEwvpTB3EPTGFA5kKsQPahCpLzRino';
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+    const FALLBACK = [
+      { start_date: '13-11-2026', start_time: '18:00', end_date: '14-11-2026', end_time: '18:00', title: 'Promo 1', link: '', type: 'Promo', visible: 'Yes' },
+      { start_date: '18-11-2026', start_time: '17:00', end_date: '20-11-2026', end_time: '17:00', title: 'Comp 1', link: '', type: 'Comp', visible: 'Yes' },
+      { start_date: '21-11-2026', start_time: '16:30', end_date: '', end_time: '16:30', title: 'Event 1', link: '', type: 'Event', visible: 'Yes' }
+    ];
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function parseCSV(text) {
+      const rows = []; let row = [], f = '', q = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (q) {
+          if (c === '"' && text[i + 1] === '"') { f += '"'; i++; }
+          else if (c === '"') q = false;
+          else f += c;
+        } else if (c === '"') q = true;
+        else if (c === ',') { row.push(f); f = ''; }
+        else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+        else if (c !== '\r') f += c;
+      }
+      if (f || row.length) { row.push(f); rows.push(row); }
+      return rows;
+    }
+
+    function parseDate(d) {
+      d = (d || '').trim();
+      let m = d.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/);
+      if (m) return { y: +m[3], mo: +m[2], d: +m[1] };
+      m = d.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      return m ? { y: +m[1], mo: +m[2], d: +m[3] } : null;
+    }
+    function parseTime(t) {
+      const m = (t || '').trim().match(/^(\d{1,2}):(\d{2})/);
+      return m ? { h: +m[1], mi: +m[2] } : { h: 0, mi: 0 };
+    }
+    const stamp = (dt, tm) => Date.UTC(dt.y, dt.mo - 1, dt.d, tm.h - 5, tm.mi);
+    function fmt(dt, tm) {
+      const h12 = tm.h % 12 || 12, ap = tm.h < 12 ? 'AM' : 'PM';
+      return `${dt.d} ${MONTHS[dt.mo - 1]}, ${h12}:${String(tm.mi).padStart(2, '0')} ${ap}`;
+    }
+
+    function toEvents(items) {
+      const now = Date.now();
+      return items.map(r => {
+        if (/^(no|n|false|0|hide|hidden)$/i.test((r.visible || '').trim())) return null;
+        const sd = parseDate(r.start_date); if (!sd || !r.title) return null;
+        const st = parseTime(r.start_time);
+        const ed = parseDate(r.end_date) || sd, et = parseTime(r.end_time);
+        let start = stamp(sd, st), end = stamp(ed, et);
+        if (end <= start) end = start + 3 * 3600000;
+        const sameDay = !r.end_date || (ed.d === sd.d && ed.mo === sd.mo && ed.y === sd.y);
+        return { r, sd, st, ed, et, start, end, sameDay };
+      }).filter(e => e && e.end > now).sort((a, b) => a.start - b.start);
+    }
+
+
+    // Auto-sliding carousel for promos & events
+    let slideTimer;
+    function setupSlider() {
+      clearInterval(slideTimer);
+      const track = document.getElementById('event-grid'), dots = document.getElementById('event-dots');
+      dots.textContent = '';
+      const cards = [...track.children];
+      track.onscroll = null; track.onpointerenter = track.onpointerleave = track.onfocusin = track.onfocusout = track.ontouchstart = track.ontouchend = null;
+      if (cards.length < 2 || track.scrollWidth <= track.clientWidth + 4) return;
+
+      const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      const current = () => {
+        if (atEnd()) return cards.length - 1;
+        let best = 0, d = Infinity;
+        cards.forEach((c, i) => { const x = Math.abs(c.offsetLeft - track.scrollLeft); if (x < d) { d = x; best = i; } });
+        return best;
+      };
+      const go = i => track.scrollTo({ left: cards[i].offsetLeft, behavior: 'smooth' });
+      const buttons = cards.map((c, i) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', `Show item ${i + 1}`);
+        b.onclick = () => go(i); dots.append(b); return b;
+      });
+      const mark = () => { const n = current(); buttons.forEach((b, i) => b.classList.toggle('on', i === n)); };
+      let raf; track.onscroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); };
+      mark();
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let paused = false, resume;
+      slideTimer = setInterval(() => { if (!paused) go(atEnd() ? 0 : current() + 1); }, 4500);
+      track.onpointerenter = track.onfocusin = () => { paused = true; };
+      track.onpointerleave = track.onfocusout = () => { paused = false; };
+      track.ontouchstart = () => { paused = true; clearTimeout(resume); };
+      track.ontouchend = () => { clearTimeout(resume); resume = setTimeout(() => { paused = false; }, 8000); };
+    }
+
+    function renderEvents(items) {
+      const list = toEvents(items), grid = document.getElementById('event-grid'), box = document.getElementById('events');
+      grid.textContent = '';
+      if (!list.length) { box.hidden = true; return; }
+      const now = Date.now();
+      list.forEach(e => {
+        const card = document.createElement('div'); card.className = 'event';
+        const badge = document.createElement('span'); badge.className = 'badge'; badge.textContent = e.r.type || 'Event';
+        const h = document.createElement('h3'); h.textContent = e.r.title;
+        const when = document.createElement('div'); when.className = 'when';
+        when.textContent = e.sameDay ? fmt(e.sd, e.st) : `${fmt(e.sd, e.st)} to ${fmt(e.ed, e.et)}`;
+        const status = document.createElement('div'); status.className = 'status';
+        if (now >= e.start) { status.textContent = 'Happening now'; card.classList.add('live'); }
+        else {
+          const days = Math.ceil((e.start - now) / 86400000);
+          status.textContent = days <= 1 ? 'Starts soon' : `Starts in ${days} days`;
+        }
+        card.append(badge, h, when, status);
+        if (/^https?:\/\//i.test((e.r.link || '').trim())) {
+          const a = document.createElement('a'); a.href = e.r.link.trim(); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Details';
+          card.append(a);
+        }
+        grid.append(card);
+      });
+      box.hidden = false;
+      setupSlider();
+    }
+
+    renderEvents(FALLBACK);
+    fetch(CSV_URL).then(r => r.ok ? r.text() : Promise.reject()).then(t => {
+      const rows = parseCSV(t); if (rows.length < 2) return;
+      const head = rows[0].map(h => h.trim().toLowerCase().replace(/\s+/g, '_'));
+      if (!head.includes('title')) return;
+      const items = rows.slice(1).map(c => Object.fromEntries(head.map((h, i) => [h, (c[i] || '').trim()])));
+      renderEvents(items);
+    }).catch(() => {});
 
     // Offer countdown (Maldives UTC+5). Hidden automatically after the date passes.
     const offer = document.getElementById('offer');
