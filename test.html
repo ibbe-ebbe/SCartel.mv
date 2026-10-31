@@ -71,8 +71,6 @@
     }
     .price-pill b { font-size: 1.6rem; font-weight: 800; }
     .price-pill span { color: var(--muted); }
-    #offer { margin-top: 20px; color: var(--pink-soft); font-weight: 600; }
-    #countdown { display: block; color: #fff; font-variant-numeric: tabular-nums; }
 
     /* Promos & events */
     .events { margin-top: 64px; }
@@ -177,7 +175,6 @@
         <a class="cta cta-ghost" href="viber://chat?number=9609343384"><i class="fab fa-viber"></i> Message on Viber</a>
       </div>
       <p class="hero-note">Plans from MVR 500. Registration is a one-time fee.</p>
-      <div id="offer" hidden>🎉 No registration fee <span id="countdown"></span></div>
     </div>
   </header>
 
@@ -274,11 +271,17 @@
       let m = d.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/);
       if (m) return { y: +m[3], mo: +m[2], d: +m[1] };
       m = d.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-      return m ? { y: +m[1], mo: +m[2], d: +m[3] } : null;
+      if (m) return { y: +m[1], mo: +m[2], d: +m[3] };
+      m = d.match(/^(\d{1,2})\s+([A-Za-z]{3})[a-z]*,?\s+(\d{4})$/);
+      if (m) { const mo = MONTHS.findIndex(x => x.toLowerCase() === m[2].toLowerCase()) + 1; if (mo) return { y: +m[3], mo, d: +m[1] }; }
+      return null;
     }
     function parseTime(t) {
-      const m = (t || '').trim().match(/^(\d{1,2}):(\d{2})/);
-      return m ? { h: +m[1], mi: +m[2] } : { h: 0, mi: 0 };
+      const m = (t || '').trim().match(/^(\d{1,2}):(\d{2})(?::\d{2})?\s*([AaPp][Mm])?/);
+      if (!m) return { h: 0, mi: 0 };
+      let h = +m[1];
+      if (m[3]) { const pm = /p/i.test(m[3]); if (pm && h < 12) h += 12; if (!pm && h === 12) h = 0; }
+      return { h, mi: +m[2] };
     }
     const stamp = (dt, tm) => Date.UTC(dt.y, dt.mo - 1, dt.d, tm.h - 5, tm.mi);
     function fmt(dt, tm) {
@@ -289,7 +292,7 @@
     function toEvents(items) {
       const now = Date.now();
       return items.map(r => {
-        if (/^(no|n|false|0|hide|hidden)$/i.test((r.visible || '').trim())) return null;
+        if (!/^(yes|y|true|1|show)$/i.test((r.visible || '').trim())) return null; // show only when Visible = Yes
         const sd = parseDate(r.start_date); if (!sd || !r.title) return null;
         const st = parseTime(r.start_time);
         const ed = parseDate(r.end_date) || sd, et = parseTime(r.end_time);
@@ -407,26 +410,6 @@
       console.warn('Events sheet: no tab with Title and Start Date columns found');
     }
     loadEvents();
-
-    // Offer countdown (Maldives UTC+5). Hidden automatically after the date passes.
-    const offer = document.getElementById('offer');
-    const countdown = document.getElementById('countdown');
-    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // 2025-12-31 23:59 Maldives time
-
-    function tick() {
-      const distance = targetDate - Date.now();
-      if (distance < 0) { offer.hidden = true; return false; }
-      offer.hidden = false;
-      const d = Math.floor(distance / 86400000);
-      const h = Math.floor((distance % 86400000) / 3600000);
-      const m = Math.floor((distance % 3600000) / 60000);
-      const s = Math.floor((distance % 60000) / 1000);
-      countdown.textContent = `Ends in ${d}d ${h}h ${m}m ${s}s`;
-      return true;
-    }
-    if (tick()) {
-      const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
-    }
   </script>
 </body>
 </html>
