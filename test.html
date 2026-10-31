@@ -114,6 +114,12 @@
     .fee-join { display: inline-block; margin-top: 14px; font-weight: 700; font-size: .9rem; color: var(--pink-soft); }
     .fee-join:hover { text-decoration: underline; }
 
+
+    /* Leaderboard */
+    .board { margin-top: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--pink); border-radius: 14px; padding: 20px 24px; }
+    .board h2 { font-size: 1.25rem; }
+    .board p { color: var(--muted); font-size: .95rem; }
+
     /* Map */
     .find { margin-top: 72px; position: relative; }
     .find iframe { display: block; width: 100%; height: 440px; border: 0; filter: grayscale(.4) brightness(.9); }
@@ -192,6 +198,14 @@
         <div class="event-dots" id="event-dots"></div>
       </section>
 
+      <section class="board" id="leaderboard">
+        <div>
+          <h2>Gym leaderboard</h2>
+          <p>See the current rankings.</p>
+        </div>
+        <a class="cta cta-solid" href="https://leaderboard.strengthcartel.net" target="_blank" rel="noopener"><i class="fas fa-trophy"></i> View leaderboard</a>
+      </section>
+
     </div>
 
     <section class="find" id="find-us">
@@ -219,6 +233,7 @@
       <a href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
     </div>
     <div class="links">
+      <a href="https://leaderboard.strengthcartel.net" target="_blank" rel="noopener">Leaderboard</a>
       <a href="payment.html">Payment information</a>
       <a href="rules.html">Rules &amp; guidelines</a>
     </div>
