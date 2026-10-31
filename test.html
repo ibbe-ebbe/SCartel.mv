@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strength Cartel Gym</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     @font-face {
@@ -16,281 +17,243 @@
     }
 
     :root {
-      --black: #0d0d0d;
-      --grey: #1c1c1c;
+      --bg: #0c0c0e;
+      --panel: #16161a;
+      --line: #2a2a31;
       --pink: #ff007f;
-      --white: #f5f5f5;
+      --pink-soft: #ff66a3;
+      --text: #f5f5f5;
+      --muted: #a8a8b3;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Inter', sans-serif;
-      color: var(--white);
-      min-height: 100vh;
-      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      position: relative;
-      padding-bottom: 60px;
+      line-height: 1.6;
     }
 
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 1;
-      pointer-events: none;
-    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--pink-soft); outline-offset: 3px; }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      margin: 80px auto 0;
-      padding: 40px 20px 20px;
+    /* Top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px;
+      background: rgba(12, 12, 14, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-
-    .logo {
-      width: 130px;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 8px rgba(255,0,127,0.6));
-    }
-
-    h1 {
-      font-family: 'NCLMaxipower', sans-serif;
-      font-size: 3.2em;
-      color: var(--pink);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 40px; height: 40px; object-fit: contain; }
+    .brand span {
+      font-family: 'NCLMaxipower', 'Inter', sans-serif;
+      font-size: 1.3rem; letter-spacing: 1.5px; color: var(--pink);
       text-transform: uppercase;
     }
 
-    p {
-      color: #ccc;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .price {
-      font-size: 1.4em;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .offer {
-      color: #ff66a3;
-      margin-bottom: 30px;
-    }
-
-    #countdown {
-      color: var(--pink);
-      font-size: 1.3em;
-      margin-bottom: 40px;
-      text-shadow: 0 0 8px rgba(255,0,127,0.6);
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .button {
-      background: var(--pink);
-      color: var(--white);
-      padding: 14px 34px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      border: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      background: transparent;
-      color: var(--pink);
-      border-color: var(--pink);
-      box-shadow: 0 0 15px rgba(255,0,127,0.6);
-    }
-
-    iframe {
-      width: 100%;
-      height: 300px;
-      border-radius: 10px;
-      border: none;
-      margin-top: 40px;
-    }
-
-    footer {
-      background: rgba(0,0,0,0.3);
-      padding: 30px 0;
-      color: #888;
-      position: relative;
-      z-index: 2;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-bottom: 20px;
-    }
-
-    .social-icons a {
-      font-size: 36px;
-      color: white;
-    }
-
-    .social-icons a:hover {
-      color: var(--pink);
-    }
-
-    footer a {
-      color: #ff66a3;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    /* ===== Ladies Popup ===== */
-    .popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.88);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .popup-box {
-      background: #0d0d0d;
-      border: 2px solid var(--pink);
-      padding: 30px;
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 28px;
       border-radius: 12px;
-      max-width: 380px;
-      width: 90%;
-      box-shadow: 0 0 25px rgba(255,0,127,0.6);
-      animation: pop 0.4s ease;
-    }
-
-    .popup-box h2 {
-      color: var(--pink);
-      margin-bottom: 15px;
-    }
-
-    .popup-box strong {
-      color: #ff66a3;
-      font-size: 1.2em;
-    }
-
-    .popup-box button {
-      margin-top: 20px;
-      background: var(--pink);
-      border: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      color: white;
-    }
-
-    .popup-box button:hover {
-      background: transparent;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none;
       border: 2px solid var(--pink);
+      transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .btn-solid { background: var(--pink); color: #fff; }
+    .btn-solid:hover { box-shadow: 0 6px 24px rgba(255, 0, 127, 0.45); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--pink); color: var(--pink-soft); }
+    .btn-small { padding: 8px 18px; font-size: .9rem; border-radius: 10px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background-image:
+        linear-gradient(90deg, rgba(12,12,14,.96) 30%, rgba(12,12,14,.55)),
+        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover; background-position: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: 96px 24px;
+      display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center;
+    }
+    h1 {
+      font-family: 'NCLMaxipower', 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: 2px;
       color: var(--pink);
+      text-transform: uppercase;
+      text-shadow: 0 0 28px rgba(255, 0, 127, 0.35);
+      margin-bottom: 20px;
+    }
+    .tagline { font-size: 1.15rem; color: #d4d4db; max-width: 34ch; margin-bottom: 32px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Price card */
+    .price-card {
+      background: rgba(22, 22, 26, 0.88);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--pink);
+      border-radius: 18px;
+      padding: 32px 28px;
+      backdrop-filter: blur(6px);
+    }
+    .price-label { color: var(--muted); font-size: .95rem; }
+    .price-value { font-size: 3rem; font-weight: 700; line-height: 1.1; margin: 4px 0 2px; }
+    .price-value small { font-size: 1.1rem; font-weight: 500; color: var(--muted); }
+    .price-note { color: var(--muted); font-size: .95rem; }
+
+    #offer {
+      margin-top: 22px; padding-top: 20px;
+      border-top: 1px dashed var(--line);
+      color: var(--pink-soft); font-weight: 500;
+    }
+    #countdown { margin-top: 6px; font-size: 1.15rem; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+
+    /* Location */
+    .section { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
+    .location {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: center;
+    }
+    .location h2 { font-size: 1.9rem; margin-bottom: 12px; }
+    .location p { color: var(--muted); margin-bottom: 24px; max-width: 36ch; }
+    .map-frame {
+      border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+      height: 340px; background: var(--panel);
+    }
+    .map-frame iframe { border: 0; width: 100%; height: 100%; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--panel);
+      padding: 36px 24px;
+      text-align: center;
+      color: var(--muted); font-size: .9rem;
+    }
+    .social { display: flex; justify-content: center; gap: 14px; margin-bottom: 20px; }
+    .social a {
+      width: 46px; height: 46px; display: grid; place-items: center;
+      border: 1px solid var(--line); border-radius: 50%;
+      font-size: 1.15rem; text-decoration: none;
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .social a:hover { border-color: var(--pink); color: var(--pink); }
+    .links { margin-bottom: 14px; }
+    .links a { color: var(--pink-soft); text-decoration: none; margin: 0 12px; }
+    .links a:hover { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 36px; }
+      .hero { background-image:
+        linear-gradient(180deg, rgba(12,12,14,.9), rgba(12,12,14,.97)),
+        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1200&q=70'); }
+      .hero-actions .btn { flex: 1 1 100%; }
+      .location { grid-template-columns: 1fr; }
+      .section { padding: 48px 20px; }
+      .map-frame { height: 280px; }
     }
 
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.85); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      .button { width: 80%; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
     }
   </style>
 </head>
-
 <body>
-<div class="overlay"></div>
 
-<div class="content">
-  <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" class="logo">
-  <h1>Strength Cartel</h1>
-  <p>Unleash your power. Join a community that pushes limits and transforms lives.</p>
+  <header class="topbar">
+    <a href="#" class="brand">
+      <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="">
+      <span>Strength Cartel</span>
+    </a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="btn btn-solid btn-small" target="_blank" rel="noopener">Become a member</a>
+  </header>
 
-  <div class="price">Gym Fee: MVR 555</div>
-  <div class="offer">🎉 No registration fee till end of 2025 🎉</div>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>Stronger as one</h1>
+          <p class="tagline">Unleash your power. Join a community that pushes limits, builds strength, and transforms lives.</p>
+          <div class="hero-actions">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="btn btn-solid" target="_blank" rel="noopener"><i class="fas fa-dumbbell"></i> Become a member</a>
+            <a href="viber://chat?number=%2B9609343384" class="btn btn-ghost"><i class="fab fa-viber"></i> Message on Viber</a>
+          </div>
+        </div>
 
-  <div id="countdown">Loading...</div>
+        <aside class="price-card">
+          <div class="price-label">Gym fee</div>
+          <div class="price-value">MVR 555 <small>/ month</small></div>
+          <div class="price-note">Join online, then message us on Viber to get started.</div>
+          <div id="offer" hidden>
+            🎉 No registration fee for a limited time
+            <div id="countdown"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  <div class="buttons">
-    <a class="button" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform">Become a Member</a>
-    <a class="button" href="viber://chat?number=%2B+9609343384">Contact via Viber</a>
-    <a class="button" target="_blank" href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy">📍 View Location</a>
-  </div>
+    <section class="section location">
+      <div>
+        <h2>Find us in Kulhudhuffushi</h2>
+        <p>Strength Cartel Gym, Zikuraa, HDh. Kulhudhuffushi.</p>
+        <a href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy" class="btn btn-solid" target="_blank" rel="noopener"><i class="fas fa-location-dot"></i> Open in Google Maps</a>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title="Strength Cartel Gym on Google Maps"
+          src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Zikuraa+HDh,+Kulhudhuffushi&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+  </main>
 
-  <iframe 
-    src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Kulhudhuffushi&output=embed"
-    loading="lazy">
-  </iframe>
-</div>
+  <footer>
+    <div class="social">
+      <a href="https://instagram.com/strengthcartelnet" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@strengthcartelnet" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
+    </div>
+    <div class="links">
+      <a href="payment.html">Payment information</a>
+      <a href="rules.html">Rules &amp; guidelines</a>
+    </div>
+    © <span id="year">2026</span> Strength Cartel. All rights reserved.
+  </footer>
 
-<footer>
-  <div class="social-icons">
-    <a href="https://instagram.com/strengthcartelnet" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://tiktok.com/@strengthcartelnet" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="tel:+9609343384"><i class="fas fa-phone"></i></a>
-  </div>
-  <div>
-    <a href="payment.html">Payment Information</a> |
-    <a href="rules.html">Rules & Guidelines</a>
-  </div>
-  © 2025 Strength Cartel. All rights reserved.
-</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-<!-- Ladies Hours Popup -->
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h2>👩 Ladies Hours</h2>
-    <p>Ladies-only gym hours are<br><strong>8:00 AM – 10:00 AM</strong></p>
-    <button onclick="closePopup()">Understood</button>
-  </div>
-</div>
+    // Offer countdown (Maldives UTC+5). Change the date below to run a new offer.
+    const offer = document.getElementById('offer');
+    const countdown = document.getElementById('countdown');
+    const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // 2025-12-31 23:59 Maldives time
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<script>
-  /* Countdown */
-  const countdown = document.getElementById('countdown');
-  const targetDate = new Date(Date.UTC(2025, 11, 31, 18, 59, 0));
-  setInterval(() => {
-    const d = targetDate - new Date();
-    if (d < 0) return countdown.innerHTML = "Offer expired!";
-    const days = Math.floor(d/86400000);
-    const hrs = Math.floor(d%86400000/3600000);
-    const mins = Math.floor(d%3600000/60000);
-    const secs = Math.floor(d%60000/1000);
-    countdown.innerHTML = `Offer ends in ${days}d ${hrs}h ${mins}m ${secs}s`;
-  },1000);
-
-  /* Popup once */
-  function closePopup() {
-    localStorage.setItem('ladiesPopupSeen','yes');
-    document.getElementById('popup').style.display='none';
-  }
-  window.onload = () => {
-    if (!localStorage.getItem('ladiesPopupSeen')) {
-      document.getElementById('popup').style.display='flex';
+    function tick() {
+      const distance = targetDate - Date.now();
+      if (distance < 0) { offer.hidden = true; return false; }
+      offer.hidden = false;
+      const d = Math.floor(distance / 86400000);
+      const h = Math.floor((distance % 86400000) / 3600000);
+      const m = Math.floor((distance % 3600000) / 60000);
+      const s = Math.floor((distance % 60000) / 1000);
+      countdown.textContent = `Ends in ${d}d ${h}h ${m}m ${s}s`;
+      return true;
     }
-  };
-</script>
+    if (tick()) {
+      const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
+    }
+  </script>
 </body>
 </html>
