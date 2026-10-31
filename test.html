@@ -6,7 +6,7 @@
   <title>Strength Cartel Gym</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -18,202 +18,156 @@
 
     :root {
       --bg: #0c0c0e;
-      --panel: #16161a;
-      --line: #2a2a31;
+      --card: #17171b;
+      --line: #2b2b33;
       --pink: #ff007f;
       --pink-soft: #ff66a3;
-      --text: #f5f5f5;
-      --muted: #a8a8b3;
+      --muted: #a4a4b0;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-    }
-
-    a { color: inherit; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
     :focus-visible { outline: 3px solid var(--pink-soft); outline-offset: 3px; }
 
-    /* Top bar */
-    .topbar {
-      position: sticky; top: 0; z-index: 10;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 24px;
-      background: rgba(12, 12, 14, 0.85);
-      backdrop-filter: blur(10px);
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(12,12,14,.88); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
     }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand img { height: 44px; width: auto; object-fit: contain; }
-    .brand span {
-      font-family: 'NCLMaxipower', 'Inter', sans-serif;
-      font-size: 1.3rem; letter-spacing: 1.5px; color: var(--pink);
-      text-transform: uppercase;
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    nav img { height: 44px; width: auto; }
+    .join-btn {
+      background: var(--pink); color: #fff; font-weight: 700;
+      padding: 10px 20px; border-radius: 10px;
+      transition: background .2s ease;
     }
+    .join-btn:hover { background: #d6006a; }
 
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 13px 28px;
-      border-radius: 12px;
-      font-weight: 700; font-size: 1rem;
-      text-decoration: none;
-      border: 2px solid var(--pink);
-      transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
-    }
-    .btn-solid { background: var(--pink); color: #fff; }
-    .btn-solid:hover { box-shadow: 0 6px 24px rgba(255, 0, 127, 0.45); transform: translateY(-2px); }
-    .btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
-    .btn-ghost:hover { border-color: var(--pink); color: var(--pink-soft); }
-    .btn-small { padding: 8px 18px; font-size: .9rem; border-radius: 10px; }
-
-    /* Hero */
+    /* Hero: centered, short */
     .hero {
-      position: relative;
+      text-align: center;
+      padding: 88px 0 72px;
       background-image:
-        linear-gradient(90deg, rgba(12,12,14,.96) 30%, rgba(12,12,14,.55)),
-        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1920&q=80');
+        linear-gradient(180deg, rgba(12,12,14,.82), rgba(12,12,14,.97)),
+        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1600&q=70');
       background-size: cover; background-position: center;
-      border-bottom: 1px solid var(--line);
-    }
-    .hero-inner {
-      max-width: 1080px; margin: 0 auto;
-      padding: 96px 24px;
-      display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center;
     }
     h1 {
-      font-family: 'NCLMaxipower', 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.1;
-      letter-spacing: 2px;
-      color: var(--pink);
-      text-transform: uppercase;
-      text-shadow: 0 0 28px rgba(255, 0, 127, 0.35);
-      margin-bottom: 20px;
+      font-family: 'NCLMaxipower', 'Inter', sans-serif; font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.05; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--pink);
+      text-shadow: 0 0 30px rgba(255,0,127,.35);
+      margin-bottom: 16px;
     }
-    .tagline { font-size: 1.15rem; color: #d4d4db; max-width: 34ch; margin-bottom: 32px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .lead { color: #d2d2da; max-width: 44ch; margin: 0 auto 28px; font-size: 1.1rem; }
+    .price-pill {
+      display: inline-flex; align-items: baseline; gap: 10px;
+      border: 1px solid var(--pink); border-radius: 999px; padding: 10px 24px;
+    }
+    .price-pill b { font-size: 1.6rem; font-weight: 800; }
+    .price-pill span { color: var(--muted); }
+    #offer { margin-top: 20px; color: var(--pink-soft); font-weight: 600; }
+    #countdown { display: block; color: #fff; font-variant-numeric: tabular-nums; }
 
-    /* Price card */
-    .price-card {
-      background: rgba(22, 22, 26, 0.88);
-      border: 1px solid var(--line);
-      border-top: 4px solid var(--pink);
-      border-radius: 18px;
-      padding: 32px 28px;
-      backdrop-filter: blur(6px);
+    /* Action tiles */
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: -36px; position: relative; z-index: 2; }
+    .tile {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 26px 22px; display: flex; flex-direction: column; gap: 6px;
+      transition: border-color .2s ease;
     }
-    .price-label { color: var(--muted); font-size: .95rem; }
-    .price-value { font-size: 3rem; font-weight: 700; line-height: 1.1; margin: 4px 0 2px; }
-    .price-value small { font-size: 1.1rem; font-weight: 500; color: var(--muted); }
-    .price-note { color: var(--muted); font-size: .95rem; }
+    .tile:hover { border-color: var(--pink); }
+    .tile i { font-size: 1.6rem; color: var(--pink); margin-bottom: 8px; }
+    .tile strong { font-size: 1.1rem; }
+    .tile span { color: var(--muted); font-size: .95rem; }
+    .tile.main { background: var(--pink); border-color: var(--pink); }
+    .tile.main i, .tile.main span { color: #fff; }
 
-    #offer {
-      margin-top: 22px; padding-top: 20px;
-      border-top: 1px dashed var(--line);
-      color: var(--pink-soft); font-weight: 500;
+    /* Map */
+    .find { margin-top: 72px; position: relative; }
+    .find iframe { display: block; width: 100%; height: 440px; border: 0; filter: grayscale(.4) brightness(.9); }
+    .find-card {
+      position: absolute; left: max(20px, calc((100% - 1000px) / 2 + 20px)); bottom: 28px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 22px 24px; max-width: 320px;
     }
-    #countdown { margin-top: 6px; font-size: 1.15rem; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+    .find-card h2 { font-size: 1.3rem; margin-bottom: 4px; }
+    .find-card p { color: var(--muted); margin-bottom: 16px; font-size: .95rem; }
+    .find-card a { display: inline-block; background: var(--pink); padding: 10px 18px; border-radius: 10px; font-weight: 700; }
 
-    /* Location */
-    .section { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
-    .location {
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: center;
-    }
-    .location h2 { font-size: 1.9rem; margin-bottom: 12px; }
-    .location p { color: var(--muted); margin-bottom: 24px; max-width: 36ch; }
-    .map-frame {
-      border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
-      height: 340px; background: var(--panel);
-    }
-    .map-frame iframe { border: 0; width: 100%; height: 100%; }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--line);
-      background: var(--panel);
-      padding: 36px 24px;
-      text-align: center;
-      color: var(--muted); font-size: .9rem;
-    }
-    .social { display: flex; justify-content: center; gap: 14px; margin-bottom: 20px; }
+    footer { padding: 44px 20px; text-align: center; color: var(--muted); font-size: .9rem; }
+    .social { display: flex; justify-content: center; gap: 12px; margin-bottom: 18px; }
     .social a {
       width: 46px; height: 46px; display: grid; place-items: center;
-      border: 1px solid var(--line); border-radius: 50%;
-      font-size: 1.15rem; text-decoration: none;
+      border: 1px solid var(--line); border-radius: 50%; color: #fff; font-size: 1.1rem;
       transition: border-color .2s ease, color .2s ease;
     }
     .social a:hover { border-color: var(--pink); color: var(--pink); }
     .links { margin-bottom: 14px; }
-    .links a { color: var(--pink-soft); text-decoration: none; margin: 0 12px; }
+    .links a { color: var(--pink-soft); margin: 0 12px; }
     .links a:hover { text-decoration: underline; }
 
-    @media (max-width: 800px) {
-      .hero-inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 36px; }
-      .hero { background-image:
-        linear-gradient(180deg, rgba(12,12,14,.9), rgba(12,12,14,.97)),
-        url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1200&q=70'); }
-      .hero-actions .btn { flex: 1 1 100%; }
-      .location { grid-template-columns: 1fr; }
-      .section { padding: 48px 20px; }
-      .map-frame { height: 280px; }
+    @media (max-width: 720px) {
+      .hero { padding: 56px 0 64px; }
+      .tiles { grid-template-columns: 1fr; margin-top: -28px; }
+      .tile { flex-direction: row; align-items: center; gap: 16px; padding: 18px 20px; }
+      .tile i { margin: 0; }
+      .tile div { display: flex; flex-direction: column; }
+      .find iframe { height: 360px; }
+      .find-card { position: static; max-width: none; border-radius: 0; border-left: 0; border-right: 0; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn { transition: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a href="#" class="brand">
-      <img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel">
-    </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="btn btn-solid btn-small" target="_blank" rel="noopener">Become a member</a>
+  <nav>
+    <div class="wrap">
+      <a href="#"><img src="https://raw.githubusercontent.com/ibbe-ebbe/SCartel.mv/refs/heads/main/SCartel_Logo_L.png" alt="Strength Cartel"></a>
+      <a class="join-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">Become a member</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1>Stronger as one</h1>
+      <p class="lead">Unleash your power. Join a community that pushes limits, builds strength, and transforms lives.</p>
+      <div class="price-pill"><b>MVR 555</b><span>gym fee</span></div>
+      <div id="offer" hidden>🎉 No registration fee <span id="countdown"></span></div>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <h1>Stronger as one</h1>
-          <p class="tagline">Unleash your power. Join a community that pushes limits, builds strength, and transforms lives.</p>
-          <div class="hero-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" class="btn btn-solid" target="_blank" rel="noopener"><i class="fas fa-dumbbell"></i> Become a member</a>
-            <a href="viber://chat?number=%2B9609343384" class="btn btn-ghost"><i class="fab fa-viber"></i> Message on Viber</a>
-          </div>
-        </div>
-
-        <aside class="price-card">
-          <div class="price-label">Gym fee</div>
-          <div class="price-value">MVR 555 <small>/ month</small></div>
-          <div class="price-note">Join online, then message us on Viber to get started.</div>
-          <div id="offer" hidden>
-            🎉 No registration fee for a limited time
-            <div id="countdown"></div>
-          </div>
-        </aside>
+    <div class="wrap">
+      <div class="tiles">
+        <a class="tile main" href="https://docs.google.com/forms/d/e/1FAIpQLSepa6AZeCG8KMb9jCZo95vl9WL2ohM47woacmNw4dwAw7RZ6g/viewform" target="_blank" rel="noopener">
+          <i class="fas fa-dumbbell"></i>
+          <div><strong>Become a member</strong><br><span>Fill in the form</span></div>
+        </a>
+        <a class="tile" href="viber://chat?number=%2B9609343384">
+          <i class="fab fa-viber"></i>
+          <div><strong>Message on Viber</strong><br><span>Ask us anything</span></div>
+        </a>
+        <a class="tile" href="tel:+9609343384">
+          <i class="fas fa-phone"></i>
+          <div><strong>Call us</strong><br><span>+960 934 3384</span></div>
+        </a>
       </div>
-    </section>
+    </div>
 
-    <section class="section location">
-      <div>
-        <h2>Find us in Kulhudhuffushi</h2>
-        <p>Strength Cartel Gym, Zikuraa, HDh. Kulhudhuffushi.</p>
-        <a href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy" class="btn btn-solid" target="_blank" rel="noopener"><i class="fas fa-location-dot"></i> Open in Google Maps</a>
-      </div>
-      <div class="map-frame">
-        <iframe
-          title="Strength Cartel Gym on Google Maps"
-          src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Zikuraa+HDh,+Kulhudhuffushi&output=embed"
-          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section class="find" id="find-us">
+      <iframe title="Strength Cartel Gym on Google Maps"
+        src="https://www.google.com/maps?q=J3GF+V3G+Strength+Cartel+GYM,+Zikuraa+HDh,+Kulhudhuffushi&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="find-card">
+        <h2>Find us</h2>
+        <p>Strength Cartel Gym, Zikuraa, HDh. Kulhudhuffushi</p>
+        <a href="https://maps.app.goo.gl/pnQDJeMZ61XjcXG29?g_st=com.google.maps.preview.copy" target="_blank" rel="noopener"><i class="fas fa-location-dot"></i> Open in Google Maps</a>
       </div>
     </section>
   </main>
@@ -222,7 +176,6 @@
     <div class="social">
       <a href="https://instagram.com/strengthcartelnet" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://tiktok.com/@strengthcartelnet" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
     </div>
     <div class="links">
       <a href="payment.html">Payment information</a>
@@ -234,7 +187,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Offer countdown (Maldives UTC+5). Change the date below to run a new offer.
+    // Offer countdown (Maldives UTC+5). Hidden automatically after the date passes.
     const offer = document.getElementById('offer');
     const countdown = document.getElementById('countdown');
     const targetDate = new Date(Date.UTC(2025, 11, 31, 23 - 5, 59, 0)); // 2025-12-31 23:59 Maldives time
