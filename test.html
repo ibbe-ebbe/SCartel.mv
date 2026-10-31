@@ -114,18 +114,6 @@
     .fee-join { display: inline-block; margin-top: 14px; font-weight: 700; font-size: .9rem; color: var(--pink-soft); }
     .fee-join:hover { text-decoration: underline; }
 
-    /* How to join */
-    .steps { margin-top: 64px; }
-    .steps h2 { font-size: 1.5rem; margin-bottom: 16px; }
-    .step-list { list-style: none; counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .step-list li { counter-increment: step; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
-    .step-list li::before { content: counter(step); width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--pink); font-weight: 800; font-size: .9rem; }
-    .step-list b { font-size: 1.05rem; margin-top: 4px; }
-    .step-list span { color: var(--muted); font-size: .92rem; }
-    .step-list a { color: var(--pink-soft); text-decoration: underline; }
-
-    .mobile-bar { display: none; }
-
     /* Map */
     .find { margin-top: 72px; position: relative; }
     .find iframe { display: block; width: 100%; height: 440px; border: 0; filter: grayscale(.4) brightness(.9); }
@@ -153,7 +141,6 @@
     @media (max-width: 720px) {
       .hero { padding: 56px 0 64px; }
       .fee-grid { grid-template-columns: 1fr; }
-      .step-list { grid-template-columns: 1fr; }
       .hero-actions .cta { flex: 1 1 100%; }
       body { padding-bottom: 76px; }
       .mobile-bar { display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(12,12,14,.95); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
@@ -205,14 +192,6 @@
         <div class="event-dots" id="event-dots"></div>
       </section>
 
-      <section class="steps" id="how-to-join">
-        <h2>How to join</h2>
-        <ol class="step-list">
-          <li><b>Fill in the form</b><span>Tap Become a member and send us your details.</span></li>
-          <li><b>Pay your fee</b><span>See <a href="payment.html">payment information</a> for how to pay.</span></li>
-          <li><b>Start training</b><span>Questions first? Message us on Viber.</span></li>
-        </ol>
-      </section>
     </div>
 
     <section class="find" id="find-us">
@@ -251,12 +230,12 @@
 
     // ---- Promos & events from Google Sheet (Maldives time, UTC+5) ----
     // Sheet must be shared as "Anyone with the link can view".
-    // Columns: Start Date, Start Time, End Date, End Time, Title, Link, Type, Visible (Yes/No)  (dates as DD-MM-YYYY, times as HH:MM)
+    // Columns: Start Date, Start Time, End Date, End Time, Title, Lcaption (button text), Link, Type, Visible (Yes/No)  (dates as DD-MM-YYYY, times as HH:MM)
     const SHEET_ID = '16PDN7zge4Z4ZpaEwvpTB3EPTGFA5kKsQPahCpLzRino';
     const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
     const FALLBACK = [
-      { start_date: '13-11-2026', start_time: '18:00', end_date: '14-11-2026', end_time: '18:00', title: 'Promo 1', link: '', type: 'Promo', visible: 'Yes' },
-      { start_date: '18-11-2026', start_time: '17:00', end_date: '20-11-2026', end_time: '17:00', title: 'Comp 1', link: '', type: 'Comp', visible: 'Yes' },
+      { start_date: '13-11-2026', start_time: '18:00', end_date: '14-11-2026', end_time: '18:00', title: 'Promo 1', lcaption: 'Read more', link: 'facebook.com', type: 'Promo', visible: 'Yes' },
+      { start_date: '18-11-2026', start_time: '17:00', end_date: '20-11-2026', end_time: '17:00', title: 'Comp 1', lcaption: 'Join', link: 'dhiraagu.com', type: 'Comp', visible: 'Yes' },
       { start_date: '21-11-2026', start_time: '16:30', end_date: '', end_time: '16:30', title: 'Event 1', link: '', type: 'Event', visible: 'Yes' }
     ];
     const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -364,8 +343,11 @@
           status.textContent = days <= 1 ? 'Starts soon' : `Starts in ${days} days`;
         }
         card.append(badge, h, when, status);
-        if (/^https?:\/\//i.test((e.r.link || '').trim())) {
-          const a = document.createElement('a'); a.href = e.r.link.trim(); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Details';
+        let url = (e.r.link || '').trim();
+        if (url && !/^[a-z][a-z0-9+.-]*:/i.test(url)) url = 'https://' + url.replace(/^\/+/, '');
+        if (/^https?:\/\/[^\s]+\.[^\s]+/i.test(url)) {
+          const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = (e.r.lcaption || e.r.link_caption || e.r.caption || '').trim() || 'Details';
           card.append(a);
         }
         grid.append(card);
