@@ -247,7 +247,9 @@
     // Sheet must be shared as "Anyone with the link can view".
     // Columns: Start Date, Start Time, End Date, End Time, Title, Lcaption (button text), Link, Type, Visible (Yes/No)  (dates as DD-MM-YYYY, times as HH:MM)
     const SHEET_ID = '16PDN7zge4Z4ZpaEwvpTB3EPTGFA5kKsQPahCpLzRino';
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=1`;
+    // Events are read from the tab named Sheet3.
+    const TABS = ['Sheet3'];
+    const csvUrl = tab => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=0&sheet=${encodeURIComponent(tab)}`;
     const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
     function parseCSV(text) {
@@ -366,13 +368,45 @@
       setupSlider();
     }
 
-    fetch(CSV_URL).then(r => r.ok ? r.text() : Promise.reject()).then(t => {
-      const rows = parseCSV(t); if (rows.length < 2) return;
-      const head = rows[0].map(h => h.replace(/^\uFEFF/, '').trim().toLowerCase().replace(/\s+/g, '_'));
-      if (!head.includes('title')) { console.warn('Events sheet: Title column not found', head); return; }
-      const items = rows.slice(1).map(c => Object.fromEntries(head.map((h, i) => [h, (c[i] || '').trim()])));
-      renderEvents(items);
-    }).catch(err => console.warn('Events sheet could not be loaded', err));
+    // Add ?debug to the page address (e.g. yoursite.com/?debug) to see what the sheet returned.
+    const DEBUG = /[?&]debug\b/.test(location.search);
+    function dbg(msg) {
+      if (!DEBUG) return;
+      let box = document.getElementById('events-debug');
+      if (!box) {
+        box = document.createElement('pre'); box.id = 'events-debug';
+        box.style.cssText = 'white-space:pre-wrap;word-break:break-word;margin:16px 20px;padding:12px;border:1px dashed #ff66a3;border-radius:10px;color:#ffd1e5;font:12px/1.5 monospace;';
+        document.querySelector('main').prepend(box);
+      }
+      box.textContent += msg + '\n';
+    }
+
+    async function loadEvents() {
+      for (const tab of TABS) {
+        try {
+          dbg('Loading tab: ' + tab);
+          const res = await fetch(csvUrl(tab));
+          dbg('Response: ' + res.status + ' ' + (res.headers.get('content-type') || ''));
+          if (!res.ok) continue;
+          const text = await res.text();
+          const rows = parseCSV(text);
+          dbg('Rows read: ' + rows.length);
+          const norm = h => (h || '').replace(/^\uFEFF/, '').trim().toLowerCase().replace(/\s+/g, '_');
+          // Find the heading row anywhere on the tab (any row, any starting column)
+          const hr = rows.findIndex(r => { const n = r.map(norm); return n.includes('title') && n.includes('start_date'); });
+          if (hr < 0) { dbg('Heading row not found. First rows:\n' + rows.slice(0, 4).map(r => r.join(' | ')).join('\n')); continue; }
+          const head = rows[hr].map(norm);
+          const items = rows.slice(hr + 1)
+            .map(c => Object.fromEntries(head.map((h, i) => [h, (c[i] || '').trim()]).filter(([h]) => h)))
+            .filter(o => o.title);
+          dbg('Heading row at line ' + (hr + 1) + ', event rows: ' + items.length + ', shown now: ' + toEvents(items).length);
+          renderEvents(items);
+          return;
+        } catch (err) { dbg('Error: ' + err); console.warn('Events tab failed', tab, err); }
+      }
+      console.warn('Events sheet: no tab with Title and Start Date columns found');
+    }
+    loadEvents();
 
     // Offer countdown (Maldives UTC+5). Hidden automatically after the date passes.
     const offer = document.getElementById('offer');
