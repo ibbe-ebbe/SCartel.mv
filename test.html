@@ -43,7 +43,7 @@
     nav img { height: 44px; width: auto; }
     .join-btn {
       background: var(--pink); color: #fff; font-weight: 700;
-      padding: 10px 20px; border-radius: 10px;
+      padding: 8px 16px; border-radius: 8px; font-size: .9rem;
       transition: background .2s ease;
     }
     .join-btn:hover { background: #d6006a; }
@@ -75,16 +75,16 @@
     #countdown { display: block; color: #fff; font-variant-numeric: tabular-nums; }
 
     /* Action tiles */
-    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: -36px; position: relative; z-index: 2; }
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: -30px; position: relative; z-index: 2; }
     .tile {
       background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 26px 22px; display: flex; flex-direction: column; gap: 6px;
+      padding: 16px 18px; display: flex; flex-direction: column; gap: 2px;
       transition: border-color .2s ease;
     }
     .tile:hover { border-color: var(--pink); }
-    .tile i { font-size: 1.6rem; color: var(--pink); margin-bottom: 8px; }
-    .tile strong { font-size: 1.1rem; }
-    .tile span { color: var(--muted); font-size: .95rem; }
+    .tile i { font-size: 1.2rem; color: var(--pink); margin-bottom: 4px; }
+    .tile strong { font-size: .98rem; }
+    .tile span { color: var(--muted); font-size: .85rem; }
     .tile.main { background: var(--pink); border-color: var(--pink); }
     .tile.main i, .tile.main span { color: #fff; }
 
@@ -98,7 +98,7 @@
     }
     .find-card h2 { font-size: 1.3rem; margin-bottom: 4px; }
     .find-card p { color: var(--muted); margin-bottom: 16px; font-size: .95rem; }
-    .find-card a { display: inline-block; background: var(--pink); padding: 10px 18px; border-radius: 10px; font-weight: 700; }
+    .find-card a { display: inline-block; background: var(--pink); padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: .9rem; }
 
     footer { padding: 44px 20px; text-align: center; color: var(--muted); font-size: .9rem; }
     .social { display: flex; justify-content: center; gap: 12px; margin-bottom: 18px; }
@@ -115,7 +115,7 @@
     @media (max-width: 720px) {
       .hero { padding: 56px 0 64px; }
       .tiles { grid-template-columns: 1fr; margin-top: -28px; }
-      .tile { flex-direction: row; align-items: center; gap: 16px; padding: 18px 20px; }
+      .tile { flex-direction: row; align-items: center; gap: 14px; padding: 12px 16px; }
       .tile i { margin: 0; }
       .tile div { display: flex; flex-direction: column; }
       .find iframe { height: 360px; }
@@ -149,7 +149,7 @@
           <i class="fas fa-dumbbell"></i>
           <div><strong>Become a member</strong><br><span>Fill in the form</span></div>
         </a>
-        <a class="tile" href="viber://chat?number=%2B9609343384">
+        <a class="tile" href="viber://chat?number=9609343384">
           <i class="fab fa-viber"></i>
           <div><strong>Message on Viber</strong><br><span>Ask us anything</span></div>
         </a>
