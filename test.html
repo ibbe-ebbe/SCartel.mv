@@ -20,8 +20,8 @@
       --bg: #0c0c0e;
       --card: #17171b;
       --line: #2b2b33;
-      --pink: #ff007f;
-      --pink-soft: #ff66a3;
+      --pink: #db3559;
+      --pink-soft: #ee7b93;
       --muted: #a4a4b0;
     }
 
@@ -47,7 +47,7 @@
       padding: 8px 16px; border-radius: 8px; font-size: .9rem;
       transition: background .2s ease;
     }
-    .join-btn:hover { background: #d6006a; }
+    .join-btn:hover { background: #bf2a4b; }
 
     /* Hero: centered, short */
     .hero {
@@ -62,7 +62,7 @@
       font-family: 'NCLMaxipower', 'Inter', sans-serif; font-weight: 400;
       font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.05; letter-spacing: 2px;
       text-transform: uppercase; color: var(--pink);
-      text-shadow: 0 0 30px rgba(255,0,127,.35);
+      text-shadow: 0 0 30px rgba(219,53,89,.35);
       margin-bottom: 16px;
     }
     .lead { color: #d2d2da; max-width: 44ch; margin: 0 auto 28px; font-size: 1.1rem; }
@@ -84,7 +84,7 @@
     .event-dots button.on { width: 22px; background: var(--pink); }
     .event { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
     .event.live { border-color: var(--pink); }
-    .badge { align-self: flex-start; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(255,0,127,.15); color: var(--pink-soft); }
+    .badge { align-self: flex-start; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(219,53,89,.15); color: var(--pink-soft); }
     .event h3 { font-size: 1.1rem; }
     .event .when { color: var(--muted); font-size: .9rem; }
     .event .status { font-size: .9rem; font-weight: 600; color: var(--pink-soft); }
@@ -105,7 +105,7 @@
     /* Calls to action */
     .cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 700; font-size: .95rem; border: 1.5px solid var(--pink); transition: background .2s ease, border-color .2s ease, color .2s ease; }
     .cta-solid { background: var(--pink); color: #fff; }
-    .cta-solid:hover { background: #d6006a; border-color: #d6006a; }
+    .cta-solid:hover { background: #bf2a4b; border-color: #bf2a4b; }
     .cta-ghost { background: transparent; color: #fff; border-color: #3a3a44; }
     .cta-ghost:hover { border-color: var(--pink); color: var(--pink-soft); }
     .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
@@ -231,7 +231,6 @@
       <a href="tel:+9609343384" aria-label="Call us"><i class="fas fa-phone"></i></a>
     </div>
     <div class="links">
-      <a href="https://leaderboard.strengthcartel.net" target="_blank" rel="noopener">Leaderboard</a>
       <a href="payment.html">Payment information</a>
       <a href="rules.html">Rules &amp; guidelines</a>
     </div>
@@ -379,7 +378,7 @@
       let box = document.getElementById('events-debug');
       if (!box) {
         box = document.createElement('pre'); box.id = 'events-debug';
-        box.style.cssText = 'white-space:pre-wrap;word-break:break-word;margin:16px 20px;padding:12px;border:1px dashed #ff66a3;border-radius:10px;color:#ffd1e5;font:12px/1.5 monospace;';
+        box.style.cssText = 'white-space:pre-wrap;word-break:break-word;margin:16px 20px;padding:12px;border:1px dashed #ee7b93;border-radius:10px;color:#f8d3dc;font:12px/1.5 monospace;';
         document.querySelector('main').prepend(box);
       }
       box.textContent += msg + '\n';
